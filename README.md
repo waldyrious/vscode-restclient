@@ -13,8 +13,8 @@ REST Client allows you to send HTTP request and view the response in Visual Stud
 * View image response directly in pane
 * Save raw response and response body only to local disk
 * Fold and unfold response body
-* Customize font(size/family/weight) in response preview
-* Preview response with expected parts(_headers only_, _body only_, _full response_ and _both request and response_)
+* Customize font (size/family/weight) in response preview
+* Preview response with expected parts (_headers only_, _body only_, _full response_ and _both request and response_)
 * Authentication support for:
     - Basic Auth
     - Digest Auth
@@ -22,7 +22,7 @@ REST Client allows you to send HTTP request and view the response in Visual Stud
     - Azure Active Directory
     - AWS Signature v4
 * Environments and custom/system variables support
-    - Use variables in any place of request(_URL_, _Headers_, _Body_)
+    - Use variables in any place of request (_URL_, _Headers_, _Body_)
     - Support both __environment__, __file__ and __request__ custom variables
     - Auto completion and hover support for both __environment__, __file__ and __request__ custom variables
     - Diagnostic support for __request__ and __file__ custom variables
@@ -52,7 +52,7 @@ REST Client allows you to send HTTP request and view the response in Visual Stud
     - Comments (line starts with `#` or `//`) support
     - Support `json` and `xml` body indentation, comment shortcut and auto closing brackets
     - Code snippets for operations like `GET` and `POST`
-    - Support navigate to symbol definitions(request and file level custom variable) in open `http` file
+    - Support navigate to symbol definitions (request and file level custom variable) in open `http` file
     - CodeLens support to add an actionable link to send request
     - Fold/Unfold for request block
 
@@ -71,18 +71,18 @@ content-type: application/json
     "time": "Wed, 21 Oct 2015 18:27:50 GMT"
 }
 ```
-Once you prepared a request, click the `Send Request` link above the request (this will appear if the file's language mode is `HTTP`, by default `.http` files are like this), or use shortcut `Ctrl+Alt+R`(`Cmd+Alt+R` for macOS), or right-click in the editor and then select `Send Request` in the menu, or press `F1` and then select/type `Rest Client: Send Request`, the response will be previewed in a separate __webview__ panel of Visual Studio Code. If you'd like to use the full power of searching, selecting or manipulating in Visual Studio Code, you can also preview response in __an untitled document__ by setting `rest-client.previewResponseInUntitledDocument` to `true`. Once a request is issued, the waiting spin icon will be displayed in the status bar until the response is received. You can click the spin icon to cancel the request. After that, the icon will be replaced with the total duration and response size.
+Once you prepared a request, click the `Send Request` link above the request (this will appear if the file's language mode is `HTTP`, by default `.http` files are like this), or use shortcut `Ctrl+Alt+R` (`Cmd+Alt+R` for macOS), or right-click in the editor and then select `Send Request` in the menu, or press `F1` and then select/type `Rest Client: Send Request`, the response will be previewed in a separate __webview__ panel of Visual Studio Code. If you'd like to use the full power of searching, selecting or manipulating in Visual Studio Code, you can also preview response in __an untitled document__ by setting `rest-client.previewResponseInUntitledDocument` to `true`. Once a request is issued, the waiting spin icon will be displayed in the status bar until the response is received. You can click the spin icon to cancel the request. After that, the icon will be replaced with the total duration and response size.
 
 You can view the breakdown of the response time when hovering over the total duration in status bar, you could view the duration details of _Socket_, _DNS_, _TCP_, _First Byte_ and _Download_.
 
 When hovering over the response size in status bar, you could view the breakdown response size details of _headers_ and _body_.
 
-> All the shortcuts in REST Client Extension are __ONLY__ available for file language mode `http` and `plaintext`.
+> All the shortcuts in the REST Client extension are __ONLY__ available for file language mode `http` and `plaintext`.
 
 > __Send Request__ link above each request will only be visible when the request file is in `http` mode, more details can be found in [http language section](#http-language).
 
 ### Select Request Text
-You may even want to save numerous requests in the same file and execute any of them as you wish easily. REST Client extension could recognize requests separated by lines begin with three or more consecutive `#` as a delimiter. Place the cursor anywhere between the delimiters, issuing the request as above, and the underlying request will be sent out.
+You may even want to save numerous requests in the same file and execute any of them as you wish easily. REST Client recognizes requests separated by lines beginning with three or more consecutive `#` as a delimiter. Place the cursor anywhere between the delimiters, issue the request as described above, and the underlying request will be sent out.
 ```http
 GET https://example.com/comments/1 HTTP/1.1
 
@@ -100,13 +100,14 @@ content-type: application/json
     "time": "Wed, 21 Oct 2015 18:27:50 GMT"
 }
 ```
-REST Client extension also provides the flexibility that you can send the request with your selected text in editor.
+REST Client also provides the flexibility that you can send the request with your selected text in editor.
 
 ## Install
 Press `F1`, type `ext install` then search for `rest-client`.
 
 ## Making Request
 ![rest-client](https://raw.githubusercontent.com/Huachao/vscode-restclient/master/images/usage.gif)
+
 ### Request Line
 The first non-empty line of the selection (or document if nothing is selected) is the _Request Line_.
 Below are some examples of _Request Line_:
@@ -126,7 +127,7 @@ You can always write query strings in the request line, like:
 ```http
 GET https://example.com/comments?page=2&pageSize=10
 ```
-Sometimes there may be several query parameters in a single request, putting all the query parameters in _Request Line_ is difficult to read and modify. So we allow you to spread query parameters into multiple lines(one line one query parameter), we will parse the lines in immediately after the _Request Line_ which starts with `?` and `&`, like
+Sometimes there may be several query parameters in a single request, putting all the query parameters in _Request Line_ is difficult to read and modify. So we allow you to spread query parameters into multiple lines (one query parameter per line), we will parse the lines in immediately after the _Request Line_ which starts with `?` and `&`, like
 ```http
 GET https://example.com/comments
     ?page=2
@@ -134,7 +135,7 @@ GET https://example.com/comments
 ```
 
 ### Request Headers
-The lines immediately after the _request line_ to first empty line are parsed as _Request Headers_. Please provide headers with the standard `field-name: field-value` format, each line represents one header. By default `REST Client Extension` will add a `User-Agent` header with value `vscode-restclient` in your request if you don't explicitly specify. You can also change the default value in setting `rest-client.defaultHeaders`.
+The lines immediately after the _request line_ to first empty line are parsed as _Request Headers_. Please provide headers with the standard `field-name: field-value` format, each line represents one header. By default, REST Client will add a `User-Agent` header with value `vscode-restclient` in your request if you don't explicitly specify. You can also change the default value in setting `rest-client.defaultHeaders`.
 Below are examples of _Request Headers_:
 ```http
 User-Agent: rest-client
@@ -157,7 +158,7 @@ Authorization: token xxx
 </request>
 ```
 
-You can also specify file path to use as a body, which starts with `< `, the file path(*whitespaces* should be preserved) can be either in absolute or relative(relative to workspace root or current http file) formats:
+You can also specify file path to use as a body, which starts with `< `, the file path (*whitespace* should be preserved) can be either in absolute or relative formats (relative to the workspace root or to the current http file):
 ```http
 POST https://example.com/comments HTTP/1.1
 Content-Type: application/xml
@@ -217,10 +218,10 @@ name=foo
 &password=bar
 ```
 
-> When your mouse is over the document link, you can `Ctrl+Click`(`Cmd+Click` for macOS) to open the file in a new tab.
+> When your mouse is over the document link, you can `Ctrl+Click` (`Cmd+Click` for macOS) to open the file in a new tab.
 
 ## Making GraphQL Request
-With [GraphQL](https://www.graphql.com/) support in REST Client extension, you can author and send `GraphQL` query using the request body. Besides that you can also author GraphQL variables in the request body. GraphQL variables part in request body is optional, you also need to add a **blank line** between GraphQL query and variables if you need it.
+With [GraphQL](https://www.graphql.com/) support in REST Client, you can author and send `GraphQL` query using the request body. Besides that you can also author GraphQL variables in the request body. GraphQL variables part in request body is optional, you also need to add a **blank line** between GraphQL query and variables if you need it.
 
 You can specify a request as `GraphQL Request` by adding a custom request header `X-Request-Type: GraphQL` in your headers. The following code illustrates this:
 ```http
@@ -230,13 +231,13 @@ Authorization: Bearer xxx
 X-REQUEST-TYPE: GraphQL
 
 query ($name: String!, $owner: String!) {
-  repository(name: $name, owner: $owner) {
+  repository (name: $name, owner: $owner) {
     name
     fullName: nameWithOwner
     description
     diskUsage
     forkCount
-    stargazers(first: 5) {
+    stargazers (first: 5) {
         totalCount
         nodes {
             login
@@ -257,29 +258,29 @@ query ($name: String!, $owner: String!) {
 
 ## Making cURL Request
 ![cURL Request](https://raw.githubusercontent.com/Huachao/vscode-restclient/master/images/curl-request.png)
-We add the capability to directly run [curl request](https://curl.haxx.se/) in REST Client extension. The issuing request command is the same as raw HTTP one. REST Client will automatically parse the request with specified parser.
+We add the capability to directly run [curl request](https://curl.haxx.se/) in REST Client. The issuing request command is the same as raw HTTP one. REST Client will automatically parse the request with specified parser.
 
 `REST Client` doesn't fully support all the options of `cURL`, since underneath we use `request` library to send request which doesn't accept all the `cURL` options. Supported options are listed below:
 * -X, --request
 * -L, --location, --url
-* -H, --header(no _@_ support)
+* -H, --header (no _@_ support)
 * -I, --head
-* -b, --cookie(no cookie jar file support)
-* -u, --user(Basic auth support only)
+* -b, --cookie (no cookie jar file support)
+* -u, --user (Basic auth support only)
 * -d, --data, --data-ascii,--data-binary
 
 ## Copy Request As cURL
 Sometimes you may want to get the curl format of an http request quickly and save it to clipboard, just pressing `F1` and then selecting/typing `Rest Client: Copy Request As cURL` or simply right-click in the editor, and select `Copy Request As cURL`.
 
 ## Cancel Request
-Once you want to cancel a processing request, click the waiting spin icon or use shortcut `Ctrl+Alt+K`(`Cmd+Alt+K` for macOS), or press `F1` and then select/type `Rest Client: Cancel Request`.
+Once you want to cancel a processing request, click the waiting spin icon or use shortcut `Ctrl+Alt+K` (`Cmd+Alt+K` for macOS), or press `F1` and then select/type `Rest Client: Cancel Request`.
 
 ## Rerun Last Request
-Sometimes you may want to refresh the API response, now you could do it simply using shortcut `Ctrl+Alt+L`(`Cmd+Alt+L` for macOS), or press `F1` and then select/type `Rest Client: Rerun Last Request` to rerun the last request.
+Sometimes you may want to refresh the API response, now you could do it simply using shortcut `Ctrl+Alt+L` (`Cmd+Alt+L` for macOS), or press `F1` and then select/type `Rest Client: Rerun Last Request` to rerun the last request.
 
 ## Request History
 ![request-history](https://raw.githubusercontent.com/Huachao/vscode-restclient/master/images/request-history.png)
-Each time we sent an http request, the request details(method, url, headers, and body) would be persisted into file. By using shortcut `Ctrl+Alt+H`(`Cmd+Alt+H` for macOS), or press `F1` and then select/type `Rest Client: Request History`, you can view the last __50__ request items(method, url and request time) in the time reversing order, you can select any request you wish to trigger again. After specified request history item is selected, the request details would be displayed in a temp file, you can view the request details or follow previous step to trigger the request again.
+Each time we sent an http request, the request details (method, url, headers, and body) would be persisted into file. By using shortcut `Ctrl+Alt+H` (`Cmd+Alt+H` for macOS), or press `F1` and then select/type `Rest Client: Request History`, you can view the last __50__ request items (method, url and request time) in the time reversing order, you can select any request you wish to trigger again. After specified request history item is selected, the request details would be displayed in a temp file, you can view the request details or follow previous step to trigger the request again.
 
 You can also clear request history by pressing `F1` and then selecting/typing `Rest Client: Clear Request History`.
 
@@ -299,13 +300,13 @@ Another icon in the upper right corner of the response preview tab is the `Save 
 In the response webview panel, there are two options `Fold Response` and `Unfold Response` after clicking the `More Actions...` button. Sometimes you may want to fold or unfold the whole response body, these options provide a straightforward way to achieve this.
 
 ## Authentication
-We have supported some most common authentication schemes like _Basic Auth_, _Digest Auth_, _SSL Client Certificates_, _Azure Active Directory(Azure AD)_ and _AWS Signature v4_.
+We have supported some most common authentication schemes like _Basic Auth_, _Digest Auth_, _SSL Client Certificates_, _Azure Active Directory (Azure AD)_ and _AWS Signature v4_.
 
 ### Basic Auth
 HTTP Basic Auth is a widely used protocol for simple username/password authentication. We support __three__ formats of Authorization header to use Basic Auth.
 1. Add the value of Authorization header in the raw value of `username:password`.
 2. Add the value of Authorization header in the base64 encoding of `username:password`.
-3. Add the value of Authorization header in the raw value of `username` and `password`, which is separated by space. REST Client extension will do the base64 encoding automatically.
+3. Add the value of Authorization header in the raw value of `username` and `password`, which is separated by space. REST Client will do the base64 encoding automatically.
 
 The corresponding examples are as follows, they are equivalent:
 ```http
@@ -331,7 +332,7 @@ Authorization: Digest user passwd
 ```
 
 ### SSL Client Certificates
-We support `PFX`, `PKCS12`, and `PEM` certificates. Before using your certificates, you need to set the certificates paths(absolute/relative to workspace/relative to current http file) in the setting file for expected host name(port is optional). For each host, you can specify the key `cert`, `key`, `pfx` and `passphrase`.
+We support `PFX`, `PKCS12`, and `PEM` certificates. Before using your certificates, you need to set the certificates' paths (absolute/relative to workspace/relative to current http file) in the setting file for expected host name (port is optional). For each host, you can specify the key `cert`, `key`, `pfx` and `passphrase`.
 - `cert`: Path of public x509 certificate
 - `key`: Path of private key
 - `pfx`: Path of PKCS #12 or PFX certificate
@@ -359,7 +360,7 @@ Or if you have certificate in `PFX` or `PKCS12` format, setting code can be like
 }
 ```
 
-### Azure Active Directory(Azure AD)
+### Azure Active Directory (Azure AD)
 Azure AD is Microsoft’s multi-tenant, cloud-based directory and identity management service, you can refer to the [System Variables](#system-variables) section for more details.
 
 ### AWS Signature v4
@@ -377,7 +378,7 @@ Authorization: AWS <accessId> <accessKey> [token:<sessionToken>] [region:<region
 
 ## Generate Code Snippet
 ![Generate Code Snippet](https://raw.githubusercontent.com/Huachao/vscode-restclient/master/images/code-snippet.gif)
-Once you’ve finalized your request in REST Client extension, you might want to make the same request from your source code. We allow you to generate snippets of code in various languages and libraries that will help you achieve this. Once you prepared a request as previously, use shortcut `Ctrl+Alt+C`(`Cmd+Alt+C` for macOS), or right-click in the editor and then select `Generate Code Snippet` in the menu, or press `F1` and then select/type `Rest Client: Generate Code Snippet`, it will pop up the language pick list, as well as library list. After you selected the code snippet language/library you want, the generated code snippet will be previewed in a separate panel of Visual Studio Code, you can click the `Copy Code Snippet` icon in the tab title to copy it to clipboard.
+Once you’ve finalized your request in REST Client, you might want to make the same request from your source code. We allow you to generate snippets of code in various languages and libraries that will help you achieve this. Once you prepared a request as previously, use shortcut `Ctrl+Alt+C` (`Cmd+Alt+C` for macOS), or right-click in the editor and then select `Generate Code Snippet` in the menu, or press `F1` and then select/type `Rest Client: Generate Code Snippet`, it will pop up the language pick list, as well as library list. After you selected the code snippet language/library you want, the generated code snippet will be previewed in a separate panel of Visual Studio Code, you can click the `Copy Code Snippet` icon in the tab title to copy it to clipboard.
 
 ## HTTP Language
 Add language support for HTTP request, with features like __syntax highlight__, __auto completion__, __code lens__ and __comment support__, when writing HTTP request in Visual Studio Code. By default, the language association will be automatically activated in two cases:
@@ -388,6 +389,7 @@ Add language support for HTTP request, with features like __syntax highlight__, 
 If you want to enable language association in other cases, just change the language mode in the right bottom of `Visual Studio Code` to `HTTP`.
 
 ![HTTP Language](https://raw.githubusercontent.com/Huachao/vscode-restclient/master/images/http.png)
+
 ### Auto Completion
 Currently, auto completion will be enabled for following seven categories:
 
@@ -400,11 +402,11 @@ Currently, auto completion will be enabled for following seven categories:
 7. Authentication scheme for `Basic` and `Digest`
 
 ### Navigate to Symbols in Request File
-A single `http` file may define lots of requests and file level custom variables, it will be difficult to find the request/variable you want. We leverage from the _Goto Symbol Feature_ of _Visual Studio Code_ to support to navigate(goto) to request/variable with shortcut `Ctrl+Shift+O`(`Cmd+Shift+O` for macOS), or simply press `F1`, type `@`.
+A single `http` file may define lots of requests and file level custom variables, it will be difficult to find the request/variable you want. We leverage from the _Goto Symbol Feature_ of _Visual Studio Code_ to support to navigate (goto) to request/variable with shortcut `Ctrl+Shift+O` (`Cmd+Shift+O` for macOS), or simply press `F1`, type `@`.
 ![Goto Symbols](https://raw.githubusercontent.com/Huachao/vscode-restclient/master/images/navigate.png)
 
 ## Environments
-Environments give you the ability to customize requests using variables, and you can easily switch environment without changing requests in `http` file. A common usage is having different configurations for different web service environments, like devbox, sandbox, and production. We also support the __shared__ environment(identified by special environment name _$shared_) to provide a set of variables that are available in all environments. And you can define the same name variable in your specified environment to overwrite the value in shared environment. Currently, active environment's name is displayed at the right bottom of `Visual Studio Code`, when you click it, you can switch environment in the pop-up list. And you can also switch environment using shortcut `Ctrl+Alt+E`(`Cmd+Alt+E` for macOS), or press `F1` and then select/type `Rest Client: Switch Environment`.
+Environments give you the ability to customize requests using variables, and you can easily switch environment without changing requests in `http` file. A common usage is having different configurations for different web service environments, like devbox, sandbox, and production. We also support the __shared__ environment (identified by special environment name _$shared_) to provide a set of variables that are available in all environments. And you can define the same name variable in your specified environment to overwrite the value in shared environment. Currently, active environment's name is displayed at the right bottom of `Visual Studio Code`, when you click it, you can switch environment in the pop-up list. And you can also switch environment using shortcut `Ctrl+Alt+E` (`Cmd+Alt+E` for macOS), or press `F1` and then select/type `Rest Client: Switch Environment`.
 
 Environments and including variables are defined directly in `Visual Studio Code` setting file, so you can create/update/delete environments and variables at any time you wish. If you __DO NOT__ want to use any environment, you can choose `No Environment` in the environment list. Notice that if you select `No Environment`, variables defined in shared environment are still available. See [Environment Variables](#environment-variables) for more details about environment variables.
 
@@ -414,7 +416,7 @@ We support two types of variables, one is __Custom Variables__ which is defined 
 The reference syntax of system and custom variables types has a subtle difference, for the former the syntax is `{{$SystemVariableName}}`, while for the latter the syntax is `{{CustomVariableName}}`, without preceding `$` before variable name. The definition syntax and location for different types of custom variables are different. Notice that when the same name used for custom variables, request variables takes higher resolving precedence over file variables, file variables takes higher precedence over environment variables.
 
 ### Custom Variables
-Custom variables can cover different user scenarios with the benefit of environment variables, file variables, and request variables. Environment variables are mainly used for storing values that may vary in different environments. Since environment variables are directly defined in Visual Studio Code setting file, they can be referenced across different `http` files. File variables are mainly used for representing values that are constant throughout the `http` file. Request variables are used for the chaining requests scenarios which means a request needs to reference some part(header or body) of another request/response in the _same_ `http` file, imagine we need to retrieve the auth token dynamically from the login response, request variable fits the case well. Both file and request variables are defined in the `http` file and only have __File Scope__.
+Custom variables can cover different user scenarios with the benefit of environment variables, file variables, and request variables. Environment variables are mainly used for storing values that may vary in different environments. Since environment variables are directly defined in Visual Studio Code setting file, they can be referenced across different `http` files. File variables are mainly used for representing values that are constant throughout the `http` file. Request variables are used for the chaining requests scenarios which means a request needs to reference some part (header or body) of another request/response in the _same_ `http` file, imagine we need to retrieve the auth token dynamically from the login response, request variable fits the case well. Both file and request variables are defined in the `http` file and only have __File Scope__.
 
 #### Environment Variables
 For environment variables, each environment comprises a set of key value pairs defined in setting file, key and value are variable name and value respectively. Only variables defined in selected environment and shared environment are available to you. You can also reference the variables in shared environment with `{{$shared variableName}}` syntax in your active environment. Below is a sample piece of setting file for custom environments and environment level variables:
@@ -445,7 +447,7 @@ Authorization: {{token}}
 ```
 
 #### File Variables
-For file variables, the definition follows syntax __`@variableName = variableValue`__ which occupies a complete line. And variable name __MUST NOT__ contain any spaces. As for variable value, it can consist of any characters, even whitespaces are allowed for them (leading and trailing whitespaces will be trimmed). If you want to preserve some special characters like line break, you can use the _backslash_ `\` to escape, like `\n`. File variable value can even contain references to all of other kinds of variables. For instance, you can create a file variable with value of other [request variables](#request-variables) like `@token = {{loginAPI.response.body.token}}`.
+For file variables, the definition follows syntax __`@variableName = variableValue`__ which occupies a complete line. And variable name __MUST NOT__ contain any spaces. As for variable value, it can consist of any character, even whitespace is allowed for them (leading and trailing whitespace will be trimmed). If you want to preserve some special characters like line breaks, you can use the _backslash_ `\` to escape, like `\n`. File variable values can even contain references to all of other kinds of variables. For instance, you can create a file variable with a value of other [request variables](#request-variables) like `@token = {{loginAPI.response.body.token}}`.
 
 File variables can be defined in a separate request block only filled with variable definitions, as well as define request variables before any request url, which needs an extra blank line between variable definitions and request url. However, no matter where you define the file variables in the `http` file, they can be referenced in any requests of whole file. For file variables, you can also benefit from some `Visual Studio Code` features like _Go To Definition_ and _Find All References_. Below is a sample of file variable definitions and references in an `http` file.
 
@@ -529,7 +531,7 @@ GET {{baseUrl}}/comments/{{commentId}}/replies/{{getReplies.response.body.//repl
 ```
 
 ### System Variables
-System variables provide a pre-defined set of variables that can be used in any part of the request(Url/Headers/Body) in the format `{{$variableName}}`. Currently, we provide a few dynamic variables which you can use in your requests. The variable names are _case-sensitive_.
+System variables provide a pre-defined set of variables that can be used in any part of the request (url/headers/body) in the format `{{$variableName}}`. Currently, we provide a few dynamic variables which you can use in your requests. The variable names are _case-sensitive_.
 * `{{$aadToken [new] [public|cn|de|us|ppe] [<domain|tenantId>] [aud:<domain|tenantId>]}}`: Add an Azure Active Directory token based on the following options (must be specified in order):
 
   `new`: Optional. Specify `new` to force re-authentication and get a new token for the specified directory. Default: Reuse previous token for the specified directory from an in-memory cache. Expired tokens are refreshed automatically. (Use `F1 > Rest Client: Clear Azure AD Token Cache` or restart Visual Studio Code to clear the cache.)
@@ -619,16 +621,16 @@ Date: {{$datetime rfc1123}}
 > More details about `aadToken` (Azure Active Directory Token) can be found on [Wiki](https://github.com/Huachao/vscode-restclient/wiki/Azure-Active-Directory-Authentication-Samples)
 
 ## Customize Response Preview
-REST Client Extension adds the ability to control the font family, size and weight used in the response preview.
+REST Client adds the ability to control the font family, size and weight used in the response preview.
 
-By default, REST Client Extension only previews the full response in preview panel(_status line_, _headers_ and _body_). You can control which part should be previewed via the `rest-client.previewOption` setting:
+By default, REST Client only previews the full response in preview panel (_status line_, _headers_ and _body_). You can control which part should be previewed via the `rest-client.previewOption` setting:
 
 Option   | Description
 ---------|-----------------------------------------------------------------
 full     | Default. Full response is previewed
-headers  | Only the response headers(including _status line_) are previewed
+headers  | Only the response headers (including _status line_) are previewed
 body     | Only the response body is previewed
-exchange | Preview the whole HTTP exchange(request and response)
+exchange | Preview the whole HTTP exchange (request and response)
 
 ## Settings
 * `rest-client.followredirect`: Follow HTTP 3xx responses as redirects. (Default is __true__)
@@ -645,7 +647,7 @@ exchange | Preview the whole HTTP exchange(request and response)
 * `rest-client.environmentVariables`: Sets the environments and custom variables belongs to it (e.g., `{"production": {"host": "api.example.com"}, "sandbox":{"host":"sandbox.api.example.com"}}`). (Default is __{}__)
 * `rest-client.mimeAndFileExtensionMapping`: Sets the custom mapping of mime type and file extension of saved response body. (Default is __{}__)
 * `rest-client.previewResponseInUntitledDocument`: Preview response in untitled document if set to true, otherwise displayed in html view. (Default is __false__)
-* `rest-client.certificates`: Certificate paths for different hosts. The path can be absolute path or relative path(relative to workspace or current http file). (Default is __{}__)
+* `rest-client.certificates`: Certificate paths for different hosts. The path can be absolute path or relative path (relative to the workspace or to the current http file). (Default is __{}__)
 * `rest-client.suppressResponseBodyContentTypeValidationWarning`: Suppress response body content type validation. (Default is __false__)
 * `rest-client.previewOption`: Response preview output option. Option details is described above. (Default is __full__)
 * `rest-client.disableHighlightResonseBodyForLargeResponse`: Controls whether to highlight response body for response whose size is larger than limit specified by `rest-client.largeResponseSizeLimitInMB`. (Default is __true__)
@@ -653,17 +655,17 @@ exchange | Preview the whole HTTP exchange(request and response)
 * `rest-client.largeResponseBodySizeLimitInMB`: Set the response body size threshold of MB to identify whether a response is a so-called 'large response', only used when `rest-client.disableHighlightResonseBodyForLargeResponse` and/or `rest-client.disableAddingHrefLinkForLargeResponse` is set to true. (Default is __5__)
 * `rest-client.previewColumn`: Response preview column option. 'current' for previewing in the column of current request file. 'beside' for previewing at the side of the current active column and the side direction depends on `workbench.editor.openSideBySideDirection` setting, either right or below the current editor column. (Default is __beside__)
 * `rest-client.previewResponsePanelTakeFocus`: Preview response panel will take focus after receiving response. (Default is __True__)
-* `rest-client.formParamEncodingStrategy`: Form param encoding strategy for request body of _x-www-form-urlencoded_. `automatic` for detecting encoding or not automatically and do the encoding job if necessary. `never` for treating provided request body as is, no encoding job will be applied. `always` for only use for the scenario that `automatic` option not working properly, e.g., some special characters(`+`) are not encoded correctly. (Default is __automatic__)
-* `rest-client.addRequestBodyLineIndentationAroundBrackets`: Add line indentation around brackets(`{}`, `<>`, `[]`) in request body when pressing enter. (Default is __true__)
+* `rest-client.formParamEncodingStrategy`: Form param encoding strategy for request body of _x-www-form-urlencoded_. `automatic` for detecting encoding or not automatically and do the encoding job if necessary. `never` for treating provided request body as is, no encoding job will be applied. `always` for only use for the scenario that `automatic` option not working properly, e.g., some special characters (`+`) are not encoded correctly. (Default is __automatic__)
+* `rest-client.addRequestBodyLineIndentationAroundBrackets`: Add line indentation around brackets (`{}`, `<>`, `[]`) in request body when pressing enter. (Default is __true__)
 * `rest-client.decodeEscapedUnicodeCharacters`: Decode escaped unicode characters in response body. (Default is __false__)
 * `rest-client.logLevel`: The verbosity of logging in the REST output panel. (Default is __error__)
 * `rest-client.enableSendRequestCodeLens`: Enable/disable sending request CodeLens in request file. (Default is __true__)
 * `rest-client.enableCustomVariableReferencesCodeLens`: Enable/disable custom variable references CodeLens in request file. (Default is __true__)
 
-Rest Client extension respects the proxy settings made for Visual Studio Code (`http.proxy` and `http.proxyStrictSSL`). Only HTTP and HTTPS proxies are supported.
+Rest Client respects the proxy settings made for Visual Studio Code (`http.proxy` and `http.proxyStrictSSL`). Only HTTP and HTTPS proxies are supported.
 
 ### Per-request Settings
-REST Client Extension also supports request-level settings for each independent request. The syntax is similar with the request name definition, `# @settingName [settingValue]`, a required setting name as well as the optional setting value. Available settings are listed as following:
+REST Client also supports request-level settings for each independent request. The syntax is similar with the request name definition, `# @settingName [settingValue]`, a required setting name as well as the optional setting value. Available settings are listed as following:
 
 Name | Syntax    | Description
 -----|-----------|--------------------------------------------------------------
